@@ -1,5 +1,5 @@
 import {getPossiblePositionMoves, getPossiblePlayerMoves, measureDistance,
-  move} from './game'
+  move, getScores} from './game'
 import {BLOCK, EMPTY} from './consts'
 
 const sortPositions=(a,b)=>{
@@ -37,12 +37,19 @@ const board2 = [
 ]
 it('checks possiblble moves of player 1', () => {
   const possibleMoves = [
-    {x: 1, y: 2},
-    {x: 1, y: 3},
-    {x: 0, y: 4},
-    {x: 0, y: 5},
-    {x: 1, y: 6},
-    {x: 1, y: 5},
+    {x: 1, y: 2, distance: 1},
+    {x: 1, y: 3, distance: 1},
+    {x: 0, y: 4, distance: 1},
+    {x: 0, y: 5, distance: 1},
+    {x: 1, y: 6, distance: 1},
+    {x: 1, y: 5, distance: 1},
+    {x: 1, y: 4, distance: 2},
+    {x: 2, y: 1, distance: 2},
+    {x: 2, y: 2, distance: 2},
+    {x: 2, y: 3, distance: 2},
+    {x: 2, y: 4, distance: 2},
+    {x: 2, y: 5, distance: 2},
+    {x: 2, y: 6, distance: 2},
   ].sort(sortPositions)
   expect(getPossiblePlayerMoves(board2, 1).sort(sortPositions)).toEqual(possibleMoves)
 })
@@ -86,4 +93,17 @@ const board3end2 = [
 ]
 it('moves player 1 from 0,3 to 0,5', () => {
   expect(move(board3start, {x:0,y:3}, {x:0,y:5})).toEqual(board3end2)
+})
+
+const board4 = [
+  [BLOCK, BLOCK, BLOCK, EMPTY, EMPTY, 1    , 1],
+  [BLOCK, BLOCK, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY],
+  [BLOCK, EMPTY, 2, EMPTY, EMPTY, EMPTY, EMPTY],
+  [EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY],
+  [EMPTY, EMPTY, 2, EMPTY, EMPTY, EMPTY, BLOCK],
+  [EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, BLOCK, BLOCK],
+  [2, EMPTY, EMPTY, EMPTY, BLOCK, BLOCK, BLOCK],
+]
+it('calculates the score of a board', () => {
+  expect(getScores(board4)).toEqual({1:2, 2:3})
 })

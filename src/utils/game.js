@@ -39,15 +39,19 @@ export function getPossiblePlayerMoves(board, player){
     }, res)
   },[])
 
-  const allPossibleMovesSingleStep = playerPositions.map(position=>getPossiblePositionMoves(board, position)).reduce((res, cur)=>res.concat(cur), [])
+  const allPossibleMovesSingleStep = playerPositions
+    .map(position=>getPossiblePositionMoves(board, position))
+    .reduce((res, cur)=>res.concat(cur), [])
+    .map(position=>({...position, distance: 1}))
 
   return allPossibleMovesSingleStep
-  .map(position=>({...position, distance: 1}))
   .reduce((res, cur) => {
     const possibleMoves = getPossiblePositionMoves(board, cur)
     const possibleMoves2Steps = possibleMoves
-      .filter(move => res.find(position=>position.x===cur.x && position.y===cur.y)===undefined)
-      .map(position=>({...position, distance: 2}))
+      .filter(move => !res.find(position=>position.x===move.x && position.y===move.y) &&
+        !playerPositions.find(position=>position.x===move.x && position.y===move.y)
+      )
+      .map(position => ({...position, distance: 2}))
     return res.concat(possibleMoves2Steps)
   }, allPossibleMovesSingleStep)
 
@@ -87,4 +91,16 @@ export function move(board, startPosition, endPosition){
     })
   }
   return board
+}
+
+export function getScores(board) {
+  return board.reduce((res, row) => {
+    const newRes = {...res}
+    row.forEach(col=>{
+      if (col !== EMPTY && col !== BLOCK) {
+        newRes[col] = newRes[col] + 1 || 1
+      }
+    })
+    return newRes
+  },{})
 }
