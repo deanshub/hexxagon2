@@ -1,0 +1,23 @@
+.cell{
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.left{
+  border: 5vw solid transparent;
+  border-right: 5vw solid #ffbc06;
+  margin-left: -5vw;
+}
+.content{
+  width: 50%;
+  background-color: #ffbc06;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.right{
+  border: 5vw solid transparent;
+  border-left: 5vw solid #ffbc06;
+  margin-right: -5vw;
+}
