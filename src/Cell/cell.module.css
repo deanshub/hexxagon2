@@ -1,13 +1,16 @@
 .cell{
-  flex: 1;
+  height: 11vh;
   display: flex;
-  overflow: hidden;
+  justify-content: center;
+  padding-bottom: 0.5vh;
 }
 
 .left{
-  border: 5vw solid transparent;
-  border-right: 5vw solid #ffbc06;
-  margin-left: -5vw;
+  position: absolute;
+  right: 49%;
+  border: 5.5vh solid transparent;
+  border-right: 3.3vh solid #ffbc06;
+  margin-right: 3.3vh;
 }
 .content{
   width: 50%;
@@ -15,9 +18,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 .right{
-  border: 5vw solid transparent;
-  border-left: 5vw solid #ffbc06;
-  margin-right: -5vw;
+  position: absolute;
+  left: 49%;
+  border: 5.5vh solid transparent;
+  border-left: 3.3vh solid #ffbc06;
+  margin-left: 3.3vh;
 }

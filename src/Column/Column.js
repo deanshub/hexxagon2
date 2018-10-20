@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import classnames from 'classnames'
-import style from './row.module.css'
+import style from './column.module.css'
 import Cell from '../Cell'
 
-class Row extends Component {
+class Column extends Component {
   static defaultProps = {
     value: [],
   }
@@ -11,13 +11,13 @@ class Row extends Component {
   render() {
     const {value} = this.props
     return (
-      <div className={classnames(style.row)}>
-        {value.map((row, index)=>(
-          <Cell key={index} value={row} index={index}/>
+      <div className={classnames(style.col)}>
+        {value.map((col, index)=>(
+          <Cell key={index} value={col} index={index}/>
         ))}
       </div>
     );
   }
 }
 
-export default Row;
+export default Column;

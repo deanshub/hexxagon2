@@ -11,9 +11,11 @@ class Cell extends Component {
     const {value} = this.props
     return (
       <div className={classnames(style.cell)}>
-        <div className={classnames(style.left)} />
-        <div className={classnames(style.content)}>{value}</div>
-        <div className={classnames(style.right)} />
+        <div className={classnames(style.content)}>
+          <div className={classnames(style.left)} />
+          {value}
+          <div className={classnames(style.right)} />
+        </div>
       </div>
     );
   }
