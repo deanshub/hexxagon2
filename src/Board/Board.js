@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classnames from 'classnames'
 import style from './board.module.css'
-import Row from '../Row'
+import Column from '../Column'
 import {transpose} from '../utils/helpers'
 
 class Board extends Component {
@@ -15,7 +15,7 @@ class Board extends Component {
     return (
       <div className={classnames(style.board)}>
         {board.map((row, index)=>(
-          <Row key={index} value={row} index={index}/>
+          <Column key={index} value={row} index={index}/>
         ))}
       </div>
     );

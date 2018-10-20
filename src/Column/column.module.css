@@ -1,0 +1,12 @@
+.col{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  /* &:nth-child(odd) {
+    margin-top: 36px;
+  } */
+}
+
+.col:nth-child(odd) {
+  margin-top: 7vh;
+}
