@@ -1,12 +1,14 @@
 .col{
   display: flex;
   flex-direction: column;
-  flex: 1;
+  /* flex: 1; */
+  width: 62px;
   /* &:nth-child(odd) {
     margin-top: 36px;
   } */
+  transform-style: preserve-3d;
 }
 
 .col:nth-child(odd) {
-  margin-top: 7vh;
+  margin-top: 32px;
 }

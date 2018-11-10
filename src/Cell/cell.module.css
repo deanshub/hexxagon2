@@ -1,19 +1,24 @@
 .cell{
-  height: 11vh;
+  height: 62px;
   display: flex;
   justify-content: center;
   padding-bottom: 0.5vh;
+  transform-style: preserve-3d;
+  opacity: 0.7;
+  cursor: pointer;
+}
+.cell:hover{
+  opacity: 1;
 }
 
 .left{
-  position: absolute;
-  right: 49%;
-  border: 5.5vh solid transparent;
-  border-right: 3.3vh solid #ffbc06;
-  margin-right: 3.3vh;
+  right: -18px;
+  border: 31px solid transparent;
+  border-right: 18px solid #ffbc06;
+  margin-right: 18px;
 }
 .content{
-  width: 50%;
+  width: 36px;
   background-color: #ffbc06;
   display: flex;
   justify-content: center;
@@ -21,9 +26,15 @@
   position: relative;
 }
 .right{
+  left: -18px;
+  border: 31px solid transparent;
+  border-left: 18px solid #ffbc06;
+  margin-left: 18px;
+}
+.middle{
   position: absolute;
-  left: 49%;
-  border: 5.5vh solid transparent;
-  border-left: 3.3vh solid #ffbc06;
-  margin-left: 3.3vh;
+}
+
+.hidden{
+  visibility: hidden;
 }
