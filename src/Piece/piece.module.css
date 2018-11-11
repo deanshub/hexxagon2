@@ -1,0 +1,137 @@
+.tridiv {
+}
+.face {
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+.scene, .shape, .face, .face-wrapper, .cr {
+  position: absolute;
+  transform-style: preserve-3d;
+}
+.scene {
+  /* transform:rotateX(-29deg) rotateY(-307deg); -moz-transform:rotateX(-29deg) rotateY(-307deg); -ms-transform:rotateX(-29deg) rotateY(-307deg); transform:rotateX(-29deg) rotateY(-307deg); */
+  transform: rotateX(95deg);
+}
+.shape {
+}
+.face, .face-wrapper {
+  overflow: hidden;
+  transform-origin: 0 0;
+  backface-visibility: hidden;
+  /* hidden by default, prevent blinking and other weird rendering glitchs */
+}
+.face {
+  background-size: 100% 100%!important;
+  background-position: center;
+}
+.face-wrapper .face {
+  left: 100%;
+  width: 100%;
+  height: 100%
+}
+.photonShader {
+  /* position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0); */
+}
+.side {
+  left: 50%;
+}
+.cr, .cr .side {
+  height: 100%;
+}
+.cylinder .tp {
+  transform: rotateX(90deg) translateY(-50%);
+}
+.cylinder .bm {
+  transform: rotateX(-90deg) translateY(-50%);
+}
+.cylinder .tp, .cylinder .bm, .cylinder .tp .photonShader, .cylinder .bm .photonShader {
+  border-radius: 50%;
+}
+.cylinder .bm {
+  top: 100%;
+}
+/* .cyl styles */
+.cyl {
+  /* transform:translate3D(0em, 0em, 0em) rotateX(0deg) rotateY(0deg) rotateZ(0deg); */
+  width: 3em;
+  height:0.5em;
+  margin: 0 0 0 -1.5em;
+}
+.cyl .tp, .cyl .bm {
+  width:3em;
+  height:3em;
+}
+.cyl .side {
+  width:0.9753066419472177em;
+  height:0.5em;
+}
+.cyl .s0 {
+  transform: rotateY(9deg) translate3D(-50%, 0, 1.49em);
+}
+.cyl .s1 {
+  transform: rotateY(27deg) translate3D(-50%, 0, 1.49em);
+}
+.cyl .s2 {
+  transform: rotateY(45deg) translate3D(-50%, 0, 1.49em);
+}
+.cyl .s3 {
+  transform: rotateY(63deg) translate3D(-50%, 0, 1.49em);
+}
+.cyl .s4 {
+  transform: rotateY(81deg) translate3D(-50%, 0, 1.49em);
+}
+.cyl .s5 {
+  transform: rotateY(99deg) translate3D(-50%, 0, 1.49em);
+}
+.cyl .s6 {
+  transform: rotateY(117deg) translate3D(-50%, 0, 1.49em);
+}
+.cyl .s7 {
+  transform: rotateY(135deg) translate3D(-50%, 0, 1.49em);
+}
+.cyl .s8 {
+  transform: rotateY(153deg) translate3D(-50%, 0, 1.49em);
+}
+.cyl .s9 {
+  transform: rotateY(171deg) translate3D(-50%, 0, 1.49em);
+}
+.cyl .s10 {
+  transform: rotateY(189deg) translate3D(-50%, 0, 1.49em);
+}
+.cyl .s11 {
+  transform: rotateY(207deg) translate3D(-50%, 0, 1.49em);
+}
+.cyl .s12 {
+  transform: rotateY(225deg) translate3D(-50%, 0, 1.49em);
+}
+.cyl .s13 {
+  transform: rotateY(243deg) translate3D(-50%, 0, 1.49em);
+}
+.cyl .s14 {
+  transform: rotateY(261deg) translate3D(-50%, 0, 1.49em);
+}
+.cyl .s15 {
+  transform: rotateY(279deg) translate3D(-50%, 0, 1.49em);
+}
+.cyl .s16 {
+  transform: rotateY(297deg) translate3D(-50%, 0, 1.49em);
+}
+.cyl .s17 {
+  transform: rotateY(315deg) translate3D(-50%, 0, 1.49em);
+}
+.cyl .s18 {
+  transform: rotateY(333deg) translate3D(-50%, 0, 1.49em);
+}
+.cyl .s19 {
+  transform: rotateY(351deg) translate3D(-50%, 0, 1.49em);
+}
+.p1 .face{
+  background-color:#EF5350;
+}
+.p2 .face{
+  background-color:#4FC3F7;
+}

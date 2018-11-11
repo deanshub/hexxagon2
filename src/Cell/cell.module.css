@@ -7,10 +7,10 @@
   opacity: 0.5;
   cursor: pointer;
 }
-.cell:hover{
+.cell.active, .cell:hover{
   opacity: 1;
 }
-.cell:hover .left{
+/* .cell:hover .left{
   border-right: 18px solid #03A9F4;
 }
 .cell:hover .content{
@@ -18,7 +18,7 @@
 }
 .cell:hover .right{
   border-left: 18px solid #03A9F4;
-}
+} */
 
 .left{
   right: -18px;
