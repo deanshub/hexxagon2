@@ -3,15 +3,14 @@ import classnames from 'classnames'
 import style from './board.module.css'
 import Column from '../Column'
 import {transpose} from '../utils/helpers'
+import { observer, inject } from 'mobx-react'
+import { compose } from 'recompose'
 
 class Board extends Component {
-  static defaultProps = {
-    value: [],
-  }
-
   render() {
-    const {value} = this.props
-    const board = transpose(value)
+    const {boardStore} = this.props
+
+    const board = transpose(boardStore.board)
     return (
       <div className={classnames(style.board)}>
         {board.map((row, index)=>(
@@ -22,4 +21,7 @@ class Board extends Component {
   }
 }
 
-export default Board;
+export default compose(
+  inject('boardStore'),
+  observer,
+)(Board)

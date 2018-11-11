@@ -9,11 +9,11 @@ class Column extends Component {
   }
 
   render() {
-    const {value} = this.props
+    const {value, index: rowIndex} = this.props
     return (
       <div className={classnames(style.col)}>
         {value.map((col, index)=>(
-          <Cell key={index} value={col} index={index}/>
+          <Cell key={index} value={col} index={index} position={{x:rowIndex, y:index}}/>
         ))}
       </div>
     );
