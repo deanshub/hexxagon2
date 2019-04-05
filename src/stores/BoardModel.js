@@ -5,9 +5,30 @@ import { getPossibleMovesByPositions, move, getScores } from '../utils/game'
 class BoardModel {
   board = board1
   currentPlayer = 1
+  selectedPosition = { x: undefined, y: undefined }
 
-  getPossibleMoves(position) {
-    return getPossibleMovesByPositions(this.board, [position])
+  selectedPositionExists() {
+    return (
+      this.selectedPosition.x !== undefined &&
+      this.selectedPosition.y !== undefined
+    )
+  }
+
+  setSelectedPosition({ x, y }) {
+    if (this.selectedPosition.x === x && this.selectedPosition.y === y) {
+      this.selectedPosition.x = undefined
+      this.selectedPosition.y = undefined
+    } else {
+      this.selectedPosition.x = x
+      this.selectedPosition.y = y
+    }
+  }
+
+  get possibleMoves() {
+    if (this.selectedPositionExists()) {
+      return getPossibleMovesByPositions(this.board, [this.selectedPosition])
+    }
+    return []
   }
 
   makeMove(start, end) {
@@ -21,8 +42,10 @@ class BoardModel {
 
 export default decorate(BoardModel, {
   board: observable,
+  selectedPosition: observable,
   currentPlayer: observable,
-  getPossibleMoves: action,
+  setSelectedPosition: action,
   makeMove: action,
   scores: computed,
+  possibleMoves: computed,
 })
