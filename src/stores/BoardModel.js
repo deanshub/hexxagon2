@@ -1,13 +1,13 @@
 import { decorate, observable, computed, action } from 'mobx'
 import board1 from '../utils/board1'
-import {getPossiblePlayerMoves, move, getScores} from '../utils/game'
+import { getPossibleMovesByPositions, move, getScores } from '../utils/game'
 
-class BoardModel{
+class BoardModel {
   board = board1
   currentPlayer = 1
 
-  getPossibleMoves({x,y}) {
-    return getPossiblePlayerMoves(this.board, this.currentPlayer)
+  getPossibleMoves(position) {
+    return getPossibleMovesByPositions(this.board, [position])
   }
 
   makeMove(start, end) {

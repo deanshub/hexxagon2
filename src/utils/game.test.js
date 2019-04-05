@@ -10,6 +10,7 @@ import {
 } from './game'
 import { generateDefaultBoard } from './game.driver'
 import { BLOCK, EMPTY } from './consts'
+import startingBoard from './board1'
 
 const PLAYER1 = 1
 const PLAYER2 = 2
@@ -20,47 +21,50 @@ const sortPositions = (a, b) => {
 
 let defaultBoard
 beforeEach(() => {
-  defaultBoard = generateDefaultBoard(7, 7)
+  defaultBoard = generateDefaultBoard(9, 9)
 })
 
 it('checks default board', () => {
-  const board = [
-    [BLOCK, BLOCK, BLOCK, EMPTY, EMPTY, EMPTY, EMPTY],
-    [BLOCK, BLOCK, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY],
-    [BLOCK, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY],
-    [EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY],
-    [EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, BLOCK],
-    [EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, BLOCK, BLOCK],
-    [EMPTY, EMPTY, EMPTY, EMPTY, BLOCK, BLOCK, BLOCK],
-  ]
-  expect(defaultBoard).toEqual(board)
+  const p1Postions = [{ x: 4, y: 0 }, { x: 0, y: 6 }, { x: 8, y: 6 }]
+  const p2Postions = [{ x: 4, y: 8 }, { x: 8, y: 2 }, { x: 0, y: 2 }]
+  let board = setValuesInBoard(defaultBoard, p1Postions, PLAYER1)
+  board = setValuesInBoard(board, p2Postions, PLAYER2)
+
+  expect(board).toEqual(startingBoard)
 })
 
 it('checks possiblble moves in an empty board', () => {
-  const possibleMoves = [{ x: 1, y: 2 }, { x: 1, y: 3 }, { x: 0, y: 4 }]
-  expect(getPossiblePositionMoves(defaultBoard, { x: 0, y: 3 })).toEqual(
-    possibleMoves
+  const possibleMoves = [{ x: 1, y: 2 }, { x: 1, y: 3 }, { x: 0, y: 3 }].sort(
+    sortPositions
   )
+  expect(
+    getPossiblePositionMoves(defaultBoard, { x: 0, y: 2 }).sort(sortPositions)
+  ).toEqual(possibleMoves)
 })
 
-it('checks possiblble moves of player 1', () => {
+it('checks possible moves of player 1', () => {
   const possibleMoves = [
-    { x: 0, y: 4, distance: 1 },
-    { x: 0, y: 5, distance: 1 },
     { x: 1, y: 2, distance: 1 },
     { x: 1, y: 3, distance: 1 },
-    { x: 1, y: 5, distance: 1 },
-    { x: 1, y: 6, distance: 1 },
+    { x: 0, y: 3, distance: 1 },
 
-    { x: 1, y: 4, distance: 2 },
+    { x: 1, y: 6, distance: 1 },
+    { x: 1, y: 7, distance: 1 },
+    { x: 0, y: 5, distance: 1 },
+
     { x: 2, y: 1, distance: 2 },
     { x: 2, y: 2, distance: 2 },
     { x: 2, y: 3, distance: 2 },
-    { x: 2, y: 4, distance: 2 },
+    { x: 1, y: 4, distance: 2 },
+    { x: 0, y: 4, distance: 2 },
+
     { x: 2, y: 5, distance: 2 },
     { x: 2, y: 6, distance: 2 },
+    { x: 2, y: 7, distance: 2 },
+    { x: 1, y: 5, distance: 2 },
+    { x: 0, y: 4, distance: 2 },
   ].sort(sortPositions)
-  const p1Postions = [{ x: 0, y: 3 }, { x: 0, y: 6 }]
+  const p1Postions = [{ x: 0, y: 2 }, { x: 0, y: 6 }]
   const board2 = setValuesInBoard(defaultBoard, p1Postions, PLAYER1)
   expect(getPossiblePlayerMoves(board2, PLAYER1).sort(sortPositions)).toEqual(
     possibleMoves

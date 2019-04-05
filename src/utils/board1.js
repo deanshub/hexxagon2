@@ -1,14 +1,4 @@
-import {EMPTY, BLOCK} from '../utils/consts'
-
-// export default [
-//   [BLOCK, BLOCK, BLOCK, EMPTY, EMPTY, EMPTY, 1],
-//   [BLOCK, BLOCK, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY],
-//   [BLOCK, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY],
-//   [EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY],
-//   [EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, BLOCK],
-//   [EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, BLOCK, BLOCK],
-//   [2, EMPTY, EMPTY, EMPTY, BLOCK, BLOCK, BLOCK],
-// ]
+import { EMPTY, BLOCK } from '../utils/consts'
 
 export default [
   [BLOCK, BLOCK, BLOCK, BLOCK, 1, BLOCK, BLOCK, BLOCK, BLOCK],

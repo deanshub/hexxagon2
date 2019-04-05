@@ -30,33 +30,59 @@ function isEmpty(board, { x, y }) {
   return board[y] && board[y][x] === EMPTY
 }
 
-export function getPossiblePositionMoves(board, position = {}) {
+function getNeighborsOffset(colIndex, distance) {
+  const evenCol = (colIndex & 1) === 0
+
+  if (distance === 1 && !evenCol) {
+    return [[+1, 0], [+1, -1], [0, -1], [-1, -1], [-1, 0], [0, +1]]
+  } else if (distance === 1 && evenCol) {
+    return [[+1, +1], [+1, 0], [0, -1], [-1, 0], [-1, +1], [0, +1]]
+  } else if (distance === 2 && evenCol) {
+    return [
+      [0, -2],
+      [-1, -1],
+      [-2, -1],
+      [-2, 0],
+      [-2, +1],
+      [-1, +2],
+      [0, +2],
+      [+1, +2],
+      [+2, +1],
+      [+2, 0],
+      [+2, -1],
+      [+1, -1],
+    ]
+  } else if (distance === 2 && !evenCol) {
+    return [
+      [0, -2],
+      [-1, -2],
+      [-2, -1],
+      [-2, 0],
+      [-2, +1],
+      [-1, +1],
+      [0, +2],
+      [+1, +1],
+      [+2, +1],
+      [+2, 0],
+      [+2, -1],
+      [+1, -2],
+    ]
+  } else {
+    throw new Error('not implemnted yet')
+  }
+}
+
+export function getPossiblePositionMoves(board, position = {}, distance = 1) {
   const { x, y } = position
-  const possibleMoves = []
-  // const evenCol = y%2===0
-  // if (evenCol) {
-  if (isEmpty(board, { x, y: y - 1 })) {
-    possibleMoves.push({ x, y: y - 1 })
-  }
-  if (isEmpty(board, { x: x + 1, y: y - 1 })) {
-    possibleMoves.push({ x: x + 1, y: y - 1 })
-  }
-  if (isEmpty(board, { x: x + 1, y })) {
-    possibleMoves.push({ x: x + 1, y })
-  }
-  if (isEmpty(board, { x, y: y + 1 })) {
-    possibleMoves.push({ x, y: y + 1 })
-  }
-  if (isEmpty(board, { x: x - 1, y })) {
-    possibleMoves.push({ x: x - 1, y })
-  }
-  if (isEmpty(board, { x: x - 1, y: y - 1 })) {
-    possibleMoves.push({ x: x - 1, y: y - 1 })
-  }
-  // } else {
-  //
-  // }
-  return possibleMoves
+  const neighbors = getNeighborsOffset(x, distance)
+
+  return neighbors.reduce((possibleMoves, [rowOffset, colOffset]) => {
+    const neighborPosition = { x: x + rowOffset, y: y + colOffset }
+    if (isEmpty(board, neighborPosition)) {
+      return [...possibleMoves, neighborPosition]
+    }
+    return possibleMoves
+  }, [])
 }
 
 export function getPlayerPostions(board, player) {
@@ -70,31 +96,31 @@ export function getPlayerPostions(board, player) {
   }, [])
 }
 
-export function getPossiblePlayerMoves(board, player) {
-  const playerPositions = getPlayerPostions(board, player)
-
-  const allPossibleMovesSingleStep = playerPositions
+export function getPossibleMovesByPositions(board, positions) {
+  const allPossibleMovesSingleStep = positions
     .map(position => getPossiblePositionMoves(board, position))
     .reduce((res, cur) => res.concat(cur), [])
     .map(position => ({ ...position, distance: 1 }))
 
-  return allPossibleMovesSingleStep.reduce((res, cur) => {
-    const possibleMoves = getPossiblePositionMoves(board, cur)
-    const possibleMoves2Steps = possibleMoves
-      .filter(
-        move =>
-          !res.find(
-            position => position.x === move.x && position.y === move.y
-          ) &&
-          !playerPositions.find(
-            position => position.x === move.x && position.y === move.y
-          )
-      )
-      .map(position => ({ ...position, distance: 2 }))
-    return res.concat(possibleMoves2Steps)
-  }, allPossibleMovesSingleStep)
+  const allPossibleMovesDoubleStep = positions
+    .map(position => getPossiblePositionMoves(board, position, 2))
+    .reduce((res, cur) => res.concat(cur), [])
+    .filter(
+      doubleMove =>
+        !allPossibleMovesSingleStep.find(
+          singleMove =>
+            singleMove.x === doubleMove.x && singleMove.y === doubleMove.y
+        )
+    )
+    .map(position => ({ ...position, distance: 2 }))
 
   // can filter all possible moves so that they won't appear more than once
+  return allPossibleMovesSingleStep.concat(allPossibleMovesDoubleStep)
+}
+
+export function getPossiblePlayerMoves(board, player) {
+  const playerPositions = getPlayerPostions(board, player)
+  return getPossibleMovesByPositions(board, playerPositions)
 }
 
 export function measureDistance(a, b) {

@@ -5,15 +5,30 @@ export function getDefaultBlockPositions(width, height) {
     { x: 0, y: 0 },
     { x: 1, y: 0 },
     { x: 2, y: 0 },
+    { x: 3, y: 0 },
+    { x: height - 1, y: 0 },
+    { x: height - 2, y: 0 },
+    { x: height - 3, y: 0 },
+    { x: height - 4, y: 0 },
+
     { x: 0, y: 1 },
     { x: 1, y: 1 },
-    { x: 0, y: 2 },
-    { x: width - 1, y: height - 3 },
-    { x: width - 2, y: height - 2 },
-    { x: width - 1, y: height - 2 },
-    { x: width - 3, y: height - 1 },
-    { x: width - 2, y: height - 1 },
-    { x: width - 1, y: height - 1 },
+    { x: height - 1, y: 1 },
+    { x: height - 2, y: 1 },
+
+    { x: 4, y: 3 },
+    { x: 3, y: 5 },
+    { x: 5, y: 5 },
+
+    { x: 0, y: width - 1 },
+    { x: 1, y: width - 1 },
+    { x: 2, y: width - 1 },
+    { x: height - 1, y: width - 1 },
+    { x: height - 2, y: width - 1 },
+    { x: height - 3, y: width - 1 },
+
+    { x: 0, y: width - 2 },
+    { x: height - 1, y: width - 2 },
   ]
   return defaultBlockPositions
 }
