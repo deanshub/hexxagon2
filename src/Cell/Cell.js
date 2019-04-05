@@ -8,14 +8,12 @@ import Piece from '../Piece'
 class Cell extends Component {
   render() {
     const { value, position, boardStore } = this.props
-    const optionalMove = boardStore.possibleMoves.find(
-      move => move.x === position.x && move.y === position.y
-    )
+    const optionalMove = boardStore.isOptionalMove(position)
 
     return (
       <div
         onClick={() => {
-          boardStore.setSelectedPosition(position)
+          boardStore.handleCellClick(position)
         }}
         className={classnames(
           style.cell,

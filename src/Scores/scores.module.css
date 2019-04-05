@@ -1,0 +1,19 @@
+.scores {
+  margin-top: 1em;
+  font-size: 1.5em;
+  color: white;
+  position: absolute;
+  width: 100vw;
+  z-index: 1;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.turn {
+  color: white;
+  position: absolute;
+  z-index: 1;
+  bottom: 1em;
+  font-size: 1.5em;
+  left: 2em;
+}

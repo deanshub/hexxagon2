@@ -14,13 +14,31 @@ class BoardModel {
     )
   }
 
+  clearSelectedPosition() {
+    this.selectedPosition.x = undefined
+    this.selectedPosition.y = undefined
+  }
+
   setSelectedPosition({ x, y }) {
+    this.selectedPosition.x = x
+    this.selectedPosition.y = y
+  }
+
+  isOptionalMove({ x, y }) {
+    return this.possibleMoves.find(move => move.x === x && move.y === y)
+  }
+
+  handleCellClick({ x, y }) {
     if (this.selectedPosition.x === x && this.selectedPosition.y === y) {
-      this.selectedPosition.x = undefined
-      this.selectedPosition.y = undefined
+      return this.clearSelectedPosition()
+    } else if (this.board[y][x] === this.currentPlayer) {
+      return this.setSelectedPosition({ x, y })
+    } else if (this.isOptionalMove({ x, y })) {
+      // TODO: move pawn
+      return this.clearSelectedPosition()
+      // TODO: change player turn
     } else {
-      this.selectedPosition.x = x
-      this.selectedPosition.y = y
+      return this.clearSelectedPosition()
     }
   }
 
@@ -44,7 +62,7 @@ export default decorate(BoardModel, {
   board: observable,
   selectedPosition: observable,
   currentPlayer: observable,
-  setSelectedPosition: action,
+  handleCellClick: action,
   makeMove: action,
   scores: computed,
   possibleMoves: computed,
