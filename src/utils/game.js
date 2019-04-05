@@ -1,7 +1,33 @@
 import { EMPTY, BLOCK } from './consts'
 
 export function generateEmptyBoard(width, height) {
-  return Array(width).fill(Array(height).fill(EMPTY))
+  return Array.from(Array(height)).map(_ => Array(width).fill(EMPTY))
+}
+
+export function iSetValueInBoard(board, { x, y }, value) {
+  return setValueInBoard(board.slice(), { x, y }, value)
+}
+export function setValueInBoard(board, { x, y }, value) {
+  board[y][x] = value
+  return board
+}
+
+export function iSetValuesInBoard(board, positions = [], value) {
+  const newBoard = board.map(line => line.slice())
+  return setValuesInBoard(newBoard, (positions = []), value)
+}
+export function setValuesInBoard(board, positions = [], value) {
+  return positions.reduce((curBoard, position) => {
+    return setValueInBoard(curBoard, position, value)
+  }, board)
+}
+
+export function setBlockPositinos(board, positions = []) {
+  return setValuesInBoard(board, positions, BLOCK)
+}
+
+function isEmpty(board, { x, y }) {
+  return board[y] && board[y][x] === EMPTY
 }
 
 export function getPossiblePositionMoves(board, position = {}) {
@@ -9,22 +35,22 @@ export function getPossiblePositionMoves(board, position = {}) {
   const possibleMoves = []
   // const evenCol = y%2===0
   // if (evenCol) {
-  if (board[x] && board[x][y - 1] === EMPTY) {
+  if (isEmpty(board, { x, y: y - 1 })) {
     possibleMoves.push({ x, y: y - 1 })
   }
-  if (board[x + 1] && board[x + 1][y - 1] === EMPTY) {
+  if (isEmpty(board, { x: x + 1, y: y - 1 })) {
     possibleMoves.push({ x: x + 1, y: y - 1 })
   }
-  if (board[x + 1] && board[x + 1][y] === EMPTY) {
+  if (isEmpty(board, { x: x + 1, y })) {
     possibleMoves.push({ x: x + 1, y })
   }
-  if (board[x] && board[x][y + 1] === EMPTY) {
+  if (isEmpty(board, { x, y: y + 1 })) {
     possibleMoves.push({ x, y: y + 1 })
   }
-  if (board[x - 1] && board[x - 1][y] === EMPTY) {
+  if (isEmpty(board, { x: x - 1, y })) {
     possibleMoves.push({ x: x - 1, y })
   }
-  if (board[x - 1] && board[x - 1][y - 1] === EMPTY) {
+  if (isEmpty(board, { x: x - 1, y: y - 1 })) {
     possibleMoves.push({ x: x - 1, y: y - 1 })
   }
   // } else {
@@ -33,15 +59,19 @@ export function getPossiblePositionMoves(board, position = {}) {
   return possibleMoves
 }
 
-export function getPossiblePlayerMoves(board, player) {
-  const playerPositions = board.reduce((res, row, rowIndex) => {
+export function getPlayerPostions(board, player) {
+  return board.reduce((res, row, rowIndex) => {
     return row.reduce((res2, col, colIndex) => {
       if (col === player) {
-        return [...res2, { x: rowIndex, y: colIndex }]
+        return [...res2, { x: colIndex, y: rowIndex }]
       }
       return res2
     }, res)
   }, [])
+}
+
+export function getPossiblePlayerMoves(board, player) {
+  const playerPositions = getPlayerPostions(board, player)
 
   const allPossibleMovesSingleStep = playerPositions
     .map(position => getPossiblePositionMoves(board, position))
