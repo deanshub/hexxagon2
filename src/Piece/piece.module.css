@@ -2,8 +2,13 @@
 }
 .face {
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+  transition: background-color 1s ease-in;
 }
-.scene, .shape, .face, .face-wrapper, .cr {
+.scene,
+.shape,
+.face,
+.face-wrapper,
+.cr {
   position: absolute;
   transform-style: preserve-3d;
 }
@@ -13,20 +18,21 @@
 }
 .shape {
 }
-.face, .face-wrapper {
+.face,
+.face-wrapper {
   overflow: hidden;
   transform-origin: 0 0;
   backface-visibility: hidden;
   /* hidden by default, prevent blinking and other weird rendering glitchs */
 }
 .face {
-  background-size: 100% 100%!important;
+  background-size: 100% 100% !important;
   background-position: center;
 }
 .face-wrapper .face {
   left: 100%;
   width: 100%;
-  height: 100%
+  height: 100%;
 }
 .photonShader {
   /* position: absolute;
@@ -39,7 +45,8 @@
 .side {
   left: 50%;
 }
-.cr, .cr .side {
+.cr,
+.cr .side {
   height: 100%;
 }
 .cylinder .tp {
@@ -48,7 +55,10 @@
 .cylinder .bm {
   transform: rotateX(-90deg) translateY(-50%);
 }
-.cylinder .tp, .cylinder .bm, .cylinder .tp .photonShader, .cylinder .bm .photonShader {
+.cylinder .tp,
+.cylinder .bm,
+.cylinder .tp .photonShader,
+.cylinder .bm .photonShader {
   border-radius: 50%;
 }
 .cylinder .bm {
@@ -58,16 +68,17 @@
 .cyl {
   /* transform:translate3D(0em, 0em, 0em) rotateX(0deg) rotateY(0deg) rotateZ(0deg); */
   width: 3em;
-  height:0.5em;
+  height: 0.5em;
   margin: 0 0 0 -1.5em;
 }
-.cyl .tp, .cyl .bm {
-  width:3em;
-  height:3em;
+.cyl .tp,
+.cyl .bm {
+  width: 3em;
+  height: 3em;
 }
 .cyl .side {
-  width:0.9753066419472177em;
-  height:0.5em;
+  width: 0.9753066419472177em;
+  height: 0.5em;
 }
 .cyl .s0 {
   transform: rotateY(9deg) translate3D(-50%, 0, 1.49em);
@@ -129,9 +140,9 @@
 .cyl .s19 {
   transform: rotateY(351deg) translate3D(-50%, 0, 1.49em);
 }
-.p1 .face{
-  background-color:#EF5350;
+.p1 .face {
+  background-color: #ef5350;
 }
-.p2 .face{
-  background-color:#4FC3F7;
+.p2 .face {
+  background-color: #4fc3f7;
 }

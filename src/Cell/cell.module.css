@@ -22,6 +22,7 @@
 } */
 
 .left {
+  transition: border-right-color 200ms ease-in;
   right: -18px;
   border: 31px solid transparent;
   border-right: 18px solid #ffbc06;
@@ -29,6 +30,7 @@
   pointer-events: none;
 }
 .content {
+  transition: background-color 200ms ease-in;
   width: 36px;
   background-color: #ffbc06;
   display: flex;
@@ -38,6 +40,7 @@
   pointer-events: none;
 }
 .right {
+  transition: border-left-color 200ms ease-in;
   left: -18px;
   border: 31px solid transparent;
   border-left: 18px solid #ffbc06;
