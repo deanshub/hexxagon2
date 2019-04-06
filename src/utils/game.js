@@ -1,4 +1,5 @@
 import { EMPTY, BLOCK } from './consts'
+import { offsetToCube, cubeDistance } from './helpers'
 
 export function generateEmptyBoard(width, height) {
   return Array.from(Array(height)).map(_ => Array(width).fill(EMPTY))
@@ -124,15 +125,23 @@ export function getPossiblePlayerMoves(board, player) {
 }
 
 export function measureDistance(a, b) {
-  return (
-    (Math.abs(a.y - b.y) +
-      Math.abs(a.y + a.x - b.y - b.x) +
-      Math.abs(a.x - b.x)) /
-    2
-  )
+  const ac = offsetToCube(a)
+  const bc = offsetToCube(b)
+  return cubeDistance(ac, bc)
 }
 
-export function move(board, startPosition, endPosition) {
+export function move(board, startPosition, endPosition, distance) {
+  // const distance = measureDistance(startPosition, endPosition)
+  const player = board[startPosition.y][startPosition.x]
+  setValueInBoard(board, endPosition, player)
+  if (distance === 2) {
+    setValueInBoard(board, startPosition, EMPTY)
+  } else if (distance > 2) {
+    throw new Error('illeagal move')
+  }
+  return board
+}
+export function iMove(board, startPosition, endPosition) {
   const distance = measureDistance(startPosition, endPosition)
 
   if (distance === 1) {

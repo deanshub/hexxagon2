@@ -28,15 +28,23 @@ class BoardModel {
     return this.possibleMoves.find(move => move.x === x && move.y === y)
   }
 
-  handleCellClick({ x, y }) {
+  handleCellClick({ x, y, distance }) {
     if (this.selectedPosition.x === x && this.selectedPosition.y === y) {
       return this.clearSelectedPosition()
     } else if (this.board[y][x] === this.currentPlayer) {
       return this.setSelectedPosition({ x, y })
-    } else if (this.isOptionalMove({ x, y })) {
-      // TODO: move pawn
+    }
+
+    const optionalMove = this.isOptionalMove({ x, y })
+    if (optionalMove) {
+      this.board = move(
+        this.board,
+        this.selectedPosition,
+        { x, y },
+        optionalMove.distance
+      )
+      this.nextTurn()
       return this.clearSelectedPosition()
-      // TODO: change player turn
     } else {
       return this.clearSelectedPosition()
     }
@@ -55,6 +63,14 @@ class BoardModel {
 
   get scores() {
     return getScores(this.board)
+  }
+
+  nextTurn() {
+    this.currentPlayer++
+    if (this.currentPlayer > 2) {
+      this.currentPlayer = 1
+    }
+    return this.currentPlayer
   }
 }
 
