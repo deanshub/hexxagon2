@@ -99,7 +99,7 @@ export function getPossiblePositionMoves(board, position = {}, distance = 1) {
   const neighbors = getNeighborsOffset(x, distance)
 
   return neighbors.reduce((possibleMoves, [rowOffset, colOffset]) => {
-    const neighborPosition = { x: x + rowOffset, y: y + colOffset }
+    const neighborPosition = { x: x + rowOffset, y: y + colOffset, origin: position}
     if (isEmpty(board, neighborPosition)) {
       return [...possibleMoves, neighborPosition]
     }
@@ -122,7 +122,7 @@ export function getPossibleMovesByPositions(board, positions) {
   const allPossibleMovesSingleStep = positions
     .map(position => getPossiblePositionMoves(board, position))
     .reduce((res, cur) => res.concat(cur), [])
-    .map(position => ({ ...position, distance: 1 }))
+    .map(position => ({ ...position, distance: 1}))
 
   const allPossibleMovesDoubleStep = positions
     .map(position => getPossiblePositionMoves(board, position, 2))

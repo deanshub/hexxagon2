@@ -11,6 +11,7 @@ class BoardModel {
   board = board1
   currentPlayer = 1
   selectedPosition = { x: undefined, y: undefined }
+  computer = true
 
   selectedPositionExists() {
     return (
@@ -49,11 +50,21 @@ class BoardModel {
         optionalMove.distance
       )
       const nextPlayer = this.nextTurn()
+      if (nextPlayer===2 && this.computer) {
+        this.computerMove()
+      }
       // TODO: handle nextPlayer===null (game end)
       return this.clearSelectedPosition()
     } else {
       return this.clearSelectedPosition()
     }
+  }
+
+  computerMove() {
+    const moves = getPossiblePlayerMoves(this.board, this.currentPlayer)
+    const move = moves[Math.floor(Math.random() * moves.length)]
+    this.setSelectedPosition(move.origin)
+    return this.handleCellClick(move)
   }
 
   get possibleMoves() {
