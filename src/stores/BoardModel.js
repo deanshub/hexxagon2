@@ -1,6 +1,11 @@
 import { decorate, observable, computed, action } from 'mobx'
 import board1 from '../utils/board1'
-import { getPossibleMovesByPositions, move, getScores } from '../utils/game'
+import {
+  getPossibleMovesByPositions,
+  move,
+  getScores,
+  getPossiblePlayerMoves,
+} from '../utils/game'
 
 class BoardModel {
   board = board1
@@ -43,7 +48,8 @@ class BoardModel {
         { x, y },
         optionalMove.distance
       )
-      this.nextTurn()
+      const nextPlayer = this.nextTurn()
+      // TODO: handle nextPlayer===null (game end)
       return this.clearSelectedPosition()
     } else {
       return this.clearSelectedPosition()
@@ -66,11 +72,16 @@ class BoardModel {
   }
 
   nextTurn() {
-    this.currentPlayer++
-    if (this.currentPlayer > 2) {
-      this.currentPlayer = 1
+    let nextPlayer = this.currentPlayer + 1
+    if (nextPlayer > 2) {
+      nextPlayer = 1
     }
-    return this.currentPlayer
+    if (getPossiblePlayerMoves(this.board, nextPlayer).length > 0) {
+      this.currentPlayer = nextPlayer
+      return this.currentPlayer
+    } else {
+      return null
+    }
   }
 }
 
