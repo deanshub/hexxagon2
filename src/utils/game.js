@@ -31,6 +31,15 @@ function isEmpty(board, { x, y }) {
   return board[y] && board[y][x] === EMPTY
 }
 
+function isOtherPlayer(board, { x, y }, player) {
+  return (
+    board[y] &&
+    board[y][x] !== EMPTY &&
+    board[y][x] !== BLOCK &&
+    board[y][x] !== player
+  )
+}
+
 function getNeighborsOffset(colIndex, distance) {
   const evenCol = (colIndex & 1) === 0
 
@@ -71,6 +80,18 @@ function getNeighborsOffset(colIndex, distance) {
   } else {
     throw new Error('not implemnted yet')
   }
+}
+
+export function getNeighborsOtherPlayer(board, { x, y }, player) {
+  const neighbors = getNeighborsOffset(x, 1)
+
+  return neighbors.reduce((possibleMoves, [rowOffset, colOffset]) => {
+    const neighborPosition = { x: x + rowOffset, y: y + colOffset }
+    if (isOtherPlayer(board, neighborPosition, player)) {
+      return [...possibleMoves, neighborPosition]
+    }
+    return possibleMoves
+  }, [])
 }
 
 export function getPossiblePositionMoves(board, position = {}, distance = 1) {
@@ -134,6 +155,13 @@ export function move(board, startPosition, endPosition, distance) {
   // const distance = measureDistance(startPosition, endPosition)
   const player = board[startPosition.y][startPosition.x]
   setValueInBoard(board, endPosition, player)
+  const otherPlayerNeighbors = getNeighborsOtherPlayer(
+    board,
+    endPosition,
+    player
+  )
+  setValuesInBoard(board, otherPlayerNeighbors, player)
+
   if (distance === 2) {
     setValueInBoard(board, startPosition, EMPTY)
   } else if (distance > 2) {
