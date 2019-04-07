@@ -6,6 +6,7 @@ import {
   getScores,
   getPossiblePlayerMoves,
 } from '../utils/game'
+import {randomSelection} from '../ai'
 
 class BoardModel {
   board = board1
@@ -61,8 +62,7 @@ class BoardModel {
   }
 
   computerMove() {
-    const moves = getPossiblePlayerMoves(this.board, this.currentPlayer)
-    const move = moves[Math.floor(Math.random() * moves.length)]
+    const move = randomSelection(this.board, this.currentPlayer)
     this.setSelectedPosition(move.origin)
     return this.handleCellClick(move)
   }
