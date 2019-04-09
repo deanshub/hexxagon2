@@ -52,7 +52,9 @@ class BoardModel {
       )
       const nextPlayer = this.nextTurn()
       if (nextPlayer===2 && this.computer) {
-        this.computerMove()
+        setTimeout(()=>{
+          this.computerMove()
+        }, 1000)
       }
       // TODO: handle nextPlayer===null (game end)
       return this.clearSelectedPosition()
