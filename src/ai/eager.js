@@ -1,9 +1,10 @@
 import {getScores, getPossiblePlayerMoves, move} from '../utils/game'
+import {cloneBoard} from '../utils/helpers'
 
 export default function(board, player) {
   const moves = getPossiblePlayerMoves(board, player)
   const maxMove = moves.reduce((max, suggestedMove) => {
-    const copiedBoard = board.map(row=>row.slice())
+    const copiedBoard = cloneBoard(board)
     const potentialBoard = move(
       copiedBoard,
       suggestedMove.origin,

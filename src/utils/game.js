@@ -1,12 +1,12 @@
 import { EMPTY, BLOCK } from './consts'
-import { offsetToCube, cubeDistance } from './helpers'
+import { offsetToCube, cubeDistance, cloneBoard } from './helpers'
 
 export function generateEmptyBoard(width, height) {
   return Array.from(Array(height)).map(_ => Array(width).fill(EMPTY))
 }
 
 export function iSetValueInBoard(board, { x, y }, value) {
-  return setValueInBoard(board.slice(), { x, y }, value)
+  return setValueInBoard(cloneBoard(board), { x, y }, value)
 }
 export function setValueInBoard(board, { x, y }, value) {
   board[y][x] = value
@@ -14,7 +14,7 @@ export function setValueInBoard(board, { x, y }, value) {
 }
 
 export function iSetValuesInBoard(board, positions = [], value) {
-  const newBoard = board.map(line => line.slice())
+  const newBoard = cloneBoard(board)
   return setValuesInBoard(newBoard, (positions = []), value)
 }
 export function setValuesInBoard(board, positions = [], value) {
