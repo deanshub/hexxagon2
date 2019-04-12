@@ -1,8 +1,8 @@
 .cell {
-  height: 62px;
+  height: 8.3vmin;
   display: flex;
   justify-content: center;
-  padding-bottom: 0.5vh;
+  padding-bottom: 0.5vmin;
   transform-style: preserve-3d;
   opacity: 0.5;
   cursor: pointer;
@@ -23,15 +23,14 @@
 
 .left {
   transition: border-right-color 200ms ease-in;
-  right: -18px;
-  border: 31px solid transparent;
-  border-right: 18px solid #ffbc06;
-  margin-right: 18px;
+  border: 4.1vmin solid transparent;
+  border-right: 2.5vmin solid #ffbc06;
+  margin-right: 2.5vmin;
   pointer-events: none;
 }
 .content {
   transition: background-color 200ms ease-in;
-  width: 36px;
+  width: 5vmin;
   background-color: #ffbc06;
   display: flex;
   justify-content: center;
@@ -41,10 +40,9 @@
 }
 .right {
   transition: border-left-color 200ms ease-in;
-  left: -18px;
-  border: 31px solid transparent;
-  border-left: 18px solid #ffbc06;
-  margin-left: 18px;
+  border: 4.1vmin solid transparent;
+  border-left: 2.5vmin solid #ffbc06;
+  margin-left: 2.5vmin;
   pointer-events: none;
 }
 .middle {

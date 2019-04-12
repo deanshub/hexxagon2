@@ -73,4 +73,4 @@ export function generateInitialPopulation(
   return memory
 }
 
-// state (board), current player, possible moves
+// export function step state (board), current player, possible moves

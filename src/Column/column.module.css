@@ -1,8 +1,8 @@
-.col{
+.col {
   display: flex;
   flex-direction: column;
   /* flex: 1; */
-  width: 62px;
+  width: 8.1vmin;
   /* &:nth-child(odd) {
     margin-top: 36px;
   } */
@@ -10,5 +10,5 @@
 }
 
 .col:nth-child(odd) {
-  margin-top: 32px;
+  margin-top: 4.4vmin;
 }

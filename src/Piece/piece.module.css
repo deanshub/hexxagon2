@@ -67,78 +67,78 @@
 /* .cyl styles */
 .cyl {
   /* transform:translate3D(0em, 0em, 0em) rotateX(0deg) rotateY(0deg) rotateZ(0deg); */
-  width: 3em;
-  height: 0.5em;
-  margin: 0 0 0 -1.5em;
+  width: 6.4vmin;
+  height: 1vmin;
+  margin: 0 0 0 -3vmin;
 }
 .cyl .tp,
 .cyl .bm {
-  width: 3em;
-  height: 3em;
+  width: 6.5vmin;
+  height: 6.5vmin;
 }
 .cyl .side {
-  width: 0.9753066419472177em;
-  height: 0.5em;
+  width: 1vmin;
+  height: 1vmin;
 }
 .cyl .s0 {
-  transform: rotateY(9deg) translate3D(-50%, 0, 1.49em);
+  transform: rotateY(9deg) translate3D(-50%, 0, 3vmin);
 }
 .cyl .s1 {
-  transform: rotateY(27deg) translate3D(-50%, 0, 1.49em);
+  transform: rotateY(27deg) translate3D(-50%, 0, 3vmin);
 }
 .cyl .s2 {
-  transform: rotateY(45deg) translate3D(-50%, 0, 1.49em);
+  transform: rotateY(45deg) translate3D(-50%, 0, 3vmin);
 }
 .cyl .s3 {
-  transform: rotateY(63deg) translate3D(-50%, 0, 1.49em);
+  transform: rotateY(63deg) translate3D(-50%, 0, 3vmin);
 }
 .cyl .s4 {
-  transform: rotateY(81deg) translate3D(-50%, 0, 1.49em);
+  transform: rotateY(81deg) translate3D(-50%, 0, 3vmin);
 }
 .cyl .s5 {
-  transform: rotateY(99deg) translate3D(-50%, 0, 1.49em);
+  transform: rotateY(99deg) translate3D(-50%, 0, 3vmin);
 }
 .cyl .s6 {
-  transform: rotateY(117deg) translate3D(-50%, 0, 1.49em);
+  transform: rotateY(117deg) translate3D(-50%, 0, 3vmin);
 }
 .cyl .s7 {
-  transform: rotateY(135deg) translate3D(-50%, 0, 1.49em);
+  transform: rotateY(135deg) translate3D(-50%, 0, 3vmin);
 }
 .cyl .s8 {
-  transform: rotateY(153deg) translate3D(-50%, 0, 1.49em);
+  transform: rotateY(153deg) translate3D(-50%, 0, 3vmin);
 }
 .cyl .s9 {
-  transform: rotateY(171deg) translate3D(-50%, 0, 1.49em);
+  transform: rotateY(171deg) translate3D(-50%, 0, 3vmin);
 }
 .cyl .s10 {
-  transform: rotateY(189deg) translate3D(-50%, 0, 1.49em);
+  transform: rotateY(189deg) translate3D(-50%, 0, 3vmin);
 }
 .cyl .s11 {
-  transform: rotateY(207deg) translate3D(-50%, 0, 1.49em);
+  transform: rotateY(207deg) translate3D(-50%, 0, 3vmin);
 }
 .cyl .s12 {
-  transform: rotateY(225deg) translate3D(-50%, 0, 1.49em);
+  transform: rotateY(225deg) translate3D(-50%, 0, 3vmin);
 }
 .cyl .s13 {
-  transform: rotateY(243deg) translate3D(-50%, 0, 1.49em);
+  transform: rotateY(243deg) translate3D(-50%, 0, 3vmin);
 }
 .cyl .s14 {
-  transform: rotateY(261deg) translate3D(-50%, 0, 1.49em);
+  transform: rotateY(261deg) translate3D(-50%, 0, 3vmin);
 }
 .cyl .s15 {
-  transform: rotateY(279deg) translate3D(-50%, 0, 1.49em);
+  transform: rotateY(279deg) translate3D(-50%, 0, 3vmin);
 }
 .cyl .s16 {
-  transform: rotateY(297deg) translate3D(-50%, 0, 1.49em);
+  transform: rotateY(297deg) translate3D(-50%, 0, 3vmin);
 }
 .cyl .s17 {
-  transform: rotateY(315deg) translate3D(-50%, 0, 1.49em);
+  transform: rotateY(315deg) translate3D(-50%, 0, 3vmin);
 }
 .cyl .s18 {
-  transform: rotateY(333deg) translate3D(-50%, 0, 1.49em);
+  transform: rotateY(333deg) translate3D(-50%, 0, 3vmin);
 }
 .cyl .s19 {
-  transform: rotateY(351deg) translate3D(-50%, 0, 1.49em);
+  transform: rotateY(351deg) translate3D(-50%, 0, 3vmin);
 }
 .p1 .face {
   background-color: #ef5350;
