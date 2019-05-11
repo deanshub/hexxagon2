@@ -27,7 +27,7 @@ class Cell extends Component {
         <div className={classnames(style.content)}>
           <div className={classnames(style.left)} />
           <div className={classnames(style.middle)}>
-            {value !== 0 && <Piece value={value} />}
+            {value !== 0 && <Piece value={value} winner={boardStore.winner} />}
           </div>
           <div className={classnames(style.right)} />
         </div>

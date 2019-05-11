@@ -6,13 +6,14 @@ import {
   getScores,
   getPossiblePlayerMoves,
 } from '../utils/game'
-import {eagerSelection} from '../ai'
+import { eagerSelection } from '../ai'
 
 class BoardModel {
   board = board1
   currentPlayer = 1
   selectedPosition = { x: undefined, y: undefined }
   computer = true
+  winner = undefined
 
   selectedPositionExists() {
     return (
@@ -51,12 +52,32 @@ class BoardModel {
         optionalMove.distance
       )
       const nextPlayer = this.nextTurn()
-      if (nextPlayer===2 && this.computer) {
-        setTimeout(()=>{
+      if (nextPlayer === 2 && this.computer) {
+        setTimeout(() => {
           this.computerMove()
         }, 1000)
+      } else if (nextPlayer === null) {
+        const scores = getScores(this.board)
+        const values = Object.values(scores)
+        if (values.length > 1 && values.every(value => value === values[0])) {
+          this.winner = null
+        } else {
+          this.winner = Number(
+            Object.keys(scores).reduce(
+              (res, player) => {
+                if (scores[player] > res.score) {
+                  return {
+                    player,
+                    score: scores[player],
+                  }
+                }
+                return res
+              },
+              { player: null, score: -Infinity }
+            ).player
+          )
+        }
       }
-      // TODO: handle nextPlayer===null (game end)
       return this.clearSelectedPosition()
     } else {
       return this.clearSelectedPosition()
@@ -106,4 +127,5 @@ export default decorate(BoardModel, {
   makeMove: action,
   scores: computed,
   possibleMoves: computed,
+  winner: observable,
 })
