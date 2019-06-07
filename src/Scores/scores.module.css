@@ -3,7 +3,8 @@
   font-size: 1.5em;
   color: white;
   position: absolute;
-  width: 12vw;
+  width: 4em;
+  max-width: 12vw;
   height: 4em;
   left: 1.5em;
   z-index: 1;
