@@ -1,6 +1,7 @@
 {
   "short_name": "Hexxagon",
-  "name": "React tfjs Hexxagon",
+  "name": "HexxagonML",
+  "description": "React tfjs Hexxagon",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,10 +9,11 @@
       "type": "image/x-icon"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "orientation": "landscape",
   "display": "standalone",
   "prefer_related_applications": true,
+  "related_applications": [],
   "theme_color": "#ef5350",
   "background_color": "#4fc3f7"
 }
